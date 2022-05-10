@@ -2,7 +2,8 @@ import discord
 import os
 import requests
 import json
-from keep_alive import keep_alive 
+
+from webserver import keep_alive
 
 client=discord.Client()
 
@@ -78,4 +79,7 @@ async def on_message(message):
     await message.channel.send(get_activity())
 
 keep_alive()
-client.run(os.getenv('TOKEN'))
+
+TOKEN = os.environ.get("DISCORD_BOT_SECRET")
+
+client.run(TOKEN)
